@@ -8,16 +8,7 @@ var passport = require('passport')
 var session = require('cookie-session')
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 require('dotenv').load();
-var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/trunk_swap');
-var trunkdb = db.get('trunk');
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
 
 
 var routes = require('./routes/index');
@@ -35,9 +26,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret: 'keyboard cat'}))
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(session({
   name: 'session',
@@ -45,6 +35,9 @@ app.use(session({
   'key'
   ]
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -59,38 +52,42 @@ passport.use(new GoogleStrategy({
       // represent the logged-in user.  In a typical application, you would want
       // to associate the Google account with a user record in your database,
       // and return that user instead.
-      // console.log(profile);
       return done(null, profile);
-    });
-  }
-));
+    })
+  }))
 // right above app.use('/', routes);
-app.use(function (req, res, next) {
-  // console.log(res.locals);
-  res.locals.user = req.user
-  next()
-})
+
+
 
 
 app.get('/auth/google',
-  passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/plus.login' }));
+  passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/userinfo.email'/*'https://www.googleapis.com/auth/plus.login'*/}));
 
 app.get('/oauth2callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.render('success', { userName: profile.displayName })
-  });
+  passport.authenticate('google', { successRedirect:'/yesGoogle', failureRedirect: '/login' }))
+
 
 app.get('/logout', function(req, res){
   req.session = null;
   res.redirect('/')
 });
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+app.use(function (req, res, next) {
+  // console.log(res.locals);
+  res.locals.user = req.user
+  next()
+})
+
 app.use('/', routes);
 app.use('/users', users);
-
-
 
 
 // catch 404 and forward to error handler
@@ -123,6 +120,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
