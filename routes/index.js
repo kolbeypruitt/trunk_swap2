@@ -2,13 +2,13 @@ var express = require('express');
 var router = express.Router();
 var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/trunk_swap');
 var trunkdb = db.get('trunk');
+var usersdb = db.get('users');
+var Users = require('../lib/mongo')
+
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log(req.user);
-  // var user = req.session.passport.user.displayName;
-  // console.log(user);
   if(req.user) {
     res.render('index', {title: 'Trunk Man', displayName: req.user.displayName })
   } else {
@@ -22,8 +22,15 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/yesGoogle', function (req, res, next) {
-  if(req.user)
-  res.render('index',{title: 'Trunk Man', displayName: req.user.displayName })
+  if(req.user) {
+    if (Users.isUserInDb(req.user)) {
+      Users.findUser(req.user).then(function (userFromDB) {
+        res.render('index',{title: 'Trunk Man', displayName: userFromDB.email})
+      })
+    } else {
+      Users.insertGoogleUser(req.user);
+    }
+  }
 })
 
 
