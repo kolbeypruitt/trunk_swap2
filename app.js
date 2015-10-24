@@ -45,7 +45,11 @@ app.use(passport.session());
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+<<<<<<< HEAD
     callbackURL: process.env.HOST + "oauth2callback"
+=======
+    callbackURL: process.env.HOST + "/oauth2callback"
+>>>>>>> 9ed0f6107d616054cfadd9594ac0a9bf10c5de48
   },function(accessToken, refreshToken, profile, done) {
     // this must be findOne because find doesn't return the data
     return usersdb.findOne({ 'email': profile.emails[0].value }, function (err, user) {
