@@ -6,7 +6,6 @@ var usersdb = db.get('users');
 var Users = require('../lib/mongo')
 
 
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.user) {
@@ -15,7 +14,6 @@ router.get('/', function(req, res, next) {
     res.render('index', {title: 'Trunk Man'})
   }
 });
-
 
 router.get('/login', function(req, res, next) {
   res.render('index', { title: 'We failed....' });

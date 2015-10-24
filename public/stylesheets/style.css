@@ -1,8 +1,24 @@
 body {
+  /*background-color:  #12FFEF;*/
+  background-image: url('/images/northern_lights.jpeg');
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
+
   color: #00B7FF;
+}
+
+div {
+  opacity: 0.95;
+  filter: alpha(opacity=95);
+}
+
+h1 {
+  color: white;
+}
+
+label {
+  color: white;
 }

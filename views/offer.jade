@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  .container
+    .row
+      .col-md-3
+      .col-md-6
+        form.form-inline(role='form' action='/offerIt' method='post')
+          .row
+            .col-xs-2
+            .col-xs-8
+              .input-group.input-group-lg
+                h1= title
+                label Year 
+                select.form-control.input-lg(name="year" id="year" value="2016")
+                  option 2016
+                  option 2015
+                  option 2014
+                  option 2013
+                div
+                label Model 
+                select.form-control.input-lg(name="model" id="model" value="STI")
+                  option STI
+                  option WRX
+                div
+                label Style 
+                select.form-control.input-lg(name="style" id="style" value="Wing")
+                  option Wing W/ Backup Cam
+                  option No Wing
+                  option Lip w/ Backup Cam
+                div
+                button.btn.btn-lg.btn-info(type='submit') Post
+            .col-xs-2
+      .col-md-3
+
+
+    
