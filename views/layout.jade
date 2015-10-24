@@ -19,6 +19,7 @@ html(lang='en')
     link(rel='stylesheet', href='/stylesheets/style.css')
     if displayName
       nav.navbar.navbar-inverted
+        .container-fluid
           // Brand and toggle get grouped for better mobile display
           .navbar-header
             button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
@@ -36,10 +37,6 @@ html(lang='en')
                   span.sr-only (current)
               li
                 a(href='#') Link
-            //- form.navbar-form.navbar-left(role='search')
-            //-   .form-group
-            //-     input.form-control(type='text', placeholder='Search')
-            //-   button.btn.btn-default(type='submit') Submit
             ul.nav.navbar-nav.navbar-right
               li
                 a(href='#') Trading Block
@@ -53,8 +50,6 @@ html(lang='en')
                   li.divider(role='separator')
                   li
                     a(href='/settings') User Settings
-                  li
-                    a(href='#') Go Somewhere Cool
           // /.navbar-collapse
         // /.container-fluid
   body

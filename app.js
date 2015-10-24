@@ -16,6 +16,7 @@ require('dotenv').load();
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var offer = require('./routes/offer');
+var settings = require('./routes/settings');
 
 var app = express();
 
@@ -71,7 +72,7 @@ app.get('/auth/google',
   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'] }))
 
 app.get('/oauth2callback', 
-  passport.authenticate('google', { successRedirect:'/loggedin', failureRedirect: '/login' }))
+  passport.authenticate('google', { successRedirect:'/loggedin', failureRedirect: '/failed' }))
 
 
 app.get('/logout', function(req, res){
@@ -95,7 +96,7 @@ app.use(function (req, res, next) {
 app.use('/', routes);
 app.use('/users', users);
 app.use('/offer', offer);
-
+app.use('/settings', settings);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

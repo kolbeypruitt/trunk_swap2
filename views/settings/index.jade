@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   .container
@@ -7,8 +7,16 @@ block content
       .col-md-6
         .jumbotron
           .page-header
-            h2= title
-          img(src=profilePic)
+            .row
+              .col-md-3
+                h2= title
+              .col-md-6
+
+              .col-md-3
+                a(href='/settings/edit') edit
+                div
+                a(href='/settings/close') close
+          img(class='profilePic' src=profilePic)
           p First Name:
             span   #{firstName}
           div
@@ -20,7 +28,3 @@ block content
           p Phone:
             span   #{phone}
       .col-md-6
-
-
-
-    
