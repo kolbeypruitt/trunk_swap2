@@ -46,17 +46,22 @@ passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "http://127.0.0.1:3000/oauth2callback"
-  },function (accessToken, refreshToken, profile, done) {
-    usersdb.findOne({'email': profile.emails[0].value}).then(function (user) {
+  },function(accessToken, refreshToken, profile, done) {
+    // this must be findOne because find doesn't return the data
+    return usersdb.findOne({ 'email': profile.emails[0].value }, function (err, user) {
       if (!user) {
-        usersdb.insert({ 'email': profile.emails[0].value
+        // console.log(user);
+        return usersdb.insert({ 'email': profile.emails[0].value
                           , 'displayName': profile.displayName
                           , 'firstName': profile.name.givenName
                           , 'lastName': profile.name.familyName
+        }, function (err, user) {
+          return done(err, user)
         })
+      } else {
+        return done(err, user)
       }
     })
-    done(null,profile)
   }
 ));
 
@@ -82,7 +87,6 @@ passport.deserializeUser(function(obj, done) {
 });
 
 app.use(function (req, res, next) {
-  // console.log(res.locals);
   res.locals.user = req.user
   next()
 })
