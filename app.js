@@ -47,14 +47,15 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.HOST + "oauth2callback"
   },function(accessToken, refreshToken, profile, done) {
+    // console.log(profile);
     // this must be findOne because find doesn't return the data
     return usersdb.findOne({ 'email': profile.emails[0].value }, function (err, user) {
       if (!user) {
-        // console.log(user);
         return usersdb.insert({ 'email': profile.emails[0].value
                           , 'displayName': profile.displayName
                           , 'firstName': profile.name.givenName
                           , 'lastName': profile.name.familyName
+                          , 'profilePic': profile.photos[0].value
         }, function (err, user) {
           return done(err, user)
         })
