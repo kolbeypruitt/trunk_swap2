@@ -23,8 +23,7 @@ router.get('/login', function(req, res, next) {
 
 router.get('/loggedin', function (req, res, next) {
   console.log(req.user);
-  // usersdb.insert({email: 'req.user.id', firstName: 'req.user.name.givenName', lastName: 'req.user.name.familyName'}, function () {
-    res.render('index', {title: 'Trunk Man', displayName: 'req.user.email'})
+    res.render('index', {title: 'Trunk Man', displayName: req.user.email})
 })
 
 

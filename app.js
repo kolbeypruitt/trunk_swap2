@@ -54,23 +54,16 @@ passport.use(new GoogleStrategy({
                           , 'firstName': profile.name.givenName
                           , 'lastName': profile.name.familyName
         })
-      } else if (user) {
-        done(null, user)
       }
     })
-    done(null, profile)
+    done(null,profile)
   }
 ));
 
-// right above app.use('/', routes);
 
-
- app.get('/auth/google',
+app.get('/auth/google',
   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'] }))
 
-// app.get('/auth/google',
-  // passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login']}));
-// // 'https://www.googleapis.com/auth/userinfo.email'
 app.get('/oauth2callback', 
   passport.authenticate('google', { successRedirect:'/loggedin', failureRedirect: '/login' }))
 
