@@ -21,16 +21,10 @@ router.get('/login', function(req, res, next) {
   res.render('index', { title: 'We failed....' });
 });
 
-router.get('/yesGoogle', function (req, res, next) {
-  if(req.user) {
-    if (Users.isUserInDb(req.user)) {
-      Users.findUser(req.user).then(function (userFromDB) {
-        res.render('index',{title: 'Trunk Man', displayName: userFromDB.email})
-      })
-    } else {
-      Users.insertGoogleUser(req.user);
-    }
-  }
+router.get('/loggedin', function (req, res, next) {
+  console.log(req.user);
+  // usersdb.insert({email: 'req.user.id', firstName: 'req.user.name.givenName', lastName: 'req.user.name.familyName'}, function () {
+    res.render('index', {title: 'Trunk Man', displayName: 'req.user.email'})
 })
 
 

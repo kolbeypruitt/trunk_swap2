@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 var passport = require('passport')
 var session = require('cookie-session')
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/trunk_swap');
+var trunkdb = db.get('trunk');
+var usersdb = db.get('users');
 require('dotenv').load();
 
 
@@ -43,28 +46,33 @@ passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "http://127.0.0.1:3000/oauth2callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
-      
-      // To keep the example simple, the user's Google profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Google account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
+  },function (accessToken, refreshToken, profile, done) {
+    usersdb.findOne({'email': profile.emails[0].value}).then(function (user) {
+      if (!user) {
+        usersdb.insert({ 'email': profile.emails[0].value
+                          , 'displayName': profile.displayName
+                          , 'firstName': profile.name.givenName
+                          , 'lastName': profile.name.familyName
+        })
+      } else if (user) {
+        done(null, user)
+      }
     })
-  }))
+    done(null, profile)
+  }
+));
+
 // right above app.use('/', routes);
 
 
+ app.get('/auth/google',
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'] }))
 
-
-app.get('/auth/google',
-  passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/userinfo.email'}));
-
+// app.get('/auth/google',
+  // passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login']}));
+// // 'https://www.googleapis.com/auth/userinfo.email'
 app.get('/oauth2callback', 
-  passport.authenticate('google', { successRedirect:'/yesGoogle', failureRedirect: '/login' }))
+  passport.authenticate('google', { successRedirect:'/loggedin', failureRedirect: '/login' }))
 
 
 app.get('/logout', function(req, res){

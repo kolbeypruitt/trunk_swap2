@@ -52,8 +52,17 @@ block content
           p
             a(href='/auth/google') login with google
       .col-md-3
-    .row
-      .col-md-2
-      .col-md-8
-      .col-md-2
+    if displayName
+      .row
+        .col-md-6
+          .jumbotron
+            h1
+            p
+              a.btn.btn-info.btn-lg(href='/offer', role='button') Offer Trade
+        .col-md-6
+          .jumbotron
+            h1
+            p
+              a.btn.btn-info.btn-lg(href='/search', role='button') Search Offers
+
     
