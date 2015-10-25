@@ -8,7 +8,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/offerIt', function(req, res, next) {
-  TrunkLib.insertTrunkOffer(req.body)
+  var body = req.body;
+  var user = req.session.passport.user;
+  TrunkLib.insertTrunkOffer(body, user)
     res.redirect('/offer/posted')
 });
 
