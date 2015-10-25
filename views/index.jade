@@ -23,16 +23,14 @@ block content
         if !displayName
           h2 This is the what you've been waiting for...
           h2 An application to connect you with the one person who wants to trade trunks with you
+      if displayName
+        .row(style='margin-top: 200px')
+          .col-md-1
+          .col-md-5
+            button.btn.center-block(href='/offer')
+              span offer trunk
+          .col-md-5
+            button.btn.center-block(href='/search')
+              span search trunks
+          .col-md-1
       .col-md-1
-    if displayName
-      .row
-        .col-md-6
-          .jumbotron
-            h1
-            p
-              a.btn.btn-info.btn-lg(href='/offer', role='button') Offer Trade
-        .col-md-6
-          .jumbotron
-            h1
-            p
-              a.btn.btn-info.btn-lg(href='/search', role='button') Search Offers
