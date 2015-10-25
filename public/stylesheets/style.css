@@ -32,11 +32,11 @@ label {
  width: 200px;
  height: 50px;
  display:block;
- background:transparent url('/images/google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png') center top no-repeat;
+ background:transparent url('/images/google_signin_buttons/btn_google_signin_dark_normal_web.png') center top no-repeat;
 }
 .googleLogin:hover {
-   background-image: url('/images/google_signin_buttons/web/1x/btn_google_signin_dark_focus_web.png');
+   background-image: url('/images/google_signin_buttons/btn_google_signin_dark_focus_web.png');
 }
 .googleLogin:active {
-   background-image: url('/images/google_signin_buttons/web/1x/btn_google_signin_dark_pressed_web.png');
+   background-image: url('/images/google_signin_buttons/btn_google_signin_dark_pressed_web.png');
 }
