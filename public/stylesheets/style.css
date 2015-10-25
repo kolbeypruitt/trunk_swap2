@@ -20,7 +20,7 @@ h1 {
 }
 
 h2 {
-  font-size: 35px;
+  font-size: 30px;
   color: white;
 }
 
@@ -39,4 +39,10 @@ label {
 }
 .googleLogin:active {
    background-image: url('/images/google_signin_buttons/btn_google_signin_dark_pressed_web.png');
+}
+
+.offerSearchBtn {
+  width: 300px;
+  height: 100px;
+  display:block;
 }

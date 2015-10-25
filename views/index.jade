@@ -10,8 +10,9 @@ block content
         if !displayName
           h1 Welcome to #{title}
       .col-md-3
-        h1
-          a(href="/auth/google" class="googleLogin" title="google login")
+        if !displayName
+          h1
+            a(href="/auth/google" class="googleLogin" title="google login")
     .row
       h1
     .row
@@ -19,8 +20,9 @@ block content
     .row
       .col-md-1
       .col-md-10
-        h2 This is the what you've been waiting for...
-        h2 An application to connect you with the one person who wants to trade trunks with you
+        if !displayName
+          h2 This is the what you've been waiting for...
+          h2 An application to connect you with the one person who wants to trade trunks with you
       .col-md-1
     if displayName
       .row
