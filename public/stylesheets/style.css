@@ -66,6 +66,10 @@ a.offerBtn {
   color: #2285db;
 }
 
+.bigBtns a {
+  text-decoration: none;
+}
+
 .btn {
   background: transparent;
   border: 10px solid #2285db;

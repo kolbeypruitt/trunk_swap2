@@ -24,13 +24,15 @@ block content
           h2 This is the what you've been waiting for...
           h2 An application to connect you with the one person who wants to trade trunks with you
       if displayName
-        .row(style='margin-top: 200px')
+        .row.bigBtns(style='margin-top: 200px')
           .col-md-1
           .col-md-5
-            button.btn.center-block(href='/offer')
-              span offer trunk
+            a(href='/offer')
+              button.btn.center-block
+                span offer trunk
           .col-md-5
-            button.btn.center-block(href='/search')
-              span search trunks
+            a(href='/search')
+              button.btn.center-block
+                span search trunks
           .col-md-1
       .col-md-1
