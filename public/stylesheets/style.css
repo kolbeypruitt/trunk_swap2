@@ -107,3 +107,34 @@ a.offerBtn {
 a.navbar-brand {
   font-size: 18px;
 }
+
+.sel {
+  opacity: 0.70;
+  filter: alpha(opacity=70);
+  padding: 5px;
+  color: #12ea99;
+  font-size: 12px;
+  background: transparent;
+  background: #2285db;
+}
+
+.option {
+  border: 10px solid #12ea99;
+  opacity: 0.80;
+  filter: alpha(opacity=80);
+  padding: 5px;
+  color: #12ea99;
+  font-size: 12px;
+  background: transparent;
+  background: #2285db;
+}
+
+.sel:hover {
+  z-index: 3;
+  width: 100%;
+  color: #394349;
+  outline: 2px solid #49aff2;
+  outline: 2px solid -webkit-focus-ring-color;
+  outline-offset: -2px;
+  cursor: pointer;
+}

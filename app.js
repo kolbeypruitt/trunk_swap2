@@ -93,7 +93,11 @@ app.use(function (req, res, next) {
   res.locals.user = req.user
   next()
 })
-
+var routes = require('./routes/index');
+var users = require('./routes/users');
+var offer = require('./routes/offer');
+var settings = require('./routes/settings');
+var search = require('./routes/search');
 app.use('/', routes);
 app.use('/users', users);
 app.use('/offer', offer);

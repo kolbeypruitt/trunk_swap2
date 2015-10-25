@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/trunk_swap');
-var trunkdb = db.get('trunk');
+var trunkdb = db.get('trunks');
 var usersdb = db.get('users');
-var Users = require('../lib/mongo')
+var TrunkLib = require('../lib/mongo')
 
 
 /* GET home page. */
