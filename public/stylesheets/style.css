@@ -72,7 +72,7 @@ a.offerBtn {
 
 .btn {
   background: transparent;
-  border: 10px solid #2285db;
+  border: 5px solid #2285db;
   font-size: 30px;
   padding: 5px;
   width: 300px;
@@ -81,11 +81,22 @@ a.offerBtn {
   color: #2285db;
 }
 .btn:hover {
+  opacity: 0.75;
+  filter: alpha(opacity=75);
   color: #12ea99;
+  background-color: #2285db;
+  border: 10px solid #12ea99;
 }
 
 .nav li {
   font-size: 18px;
+}
+
+.nav li a:hover {
+  opacity: 0.80;
+  filter: alpha(opacity=80);
+  background-color: #2285db;
+  color: #12ea99;
 }
 
 a.navbar-brand {
