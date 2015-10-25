@@ -3,33 +3,62 @@ extends ../layout
 block content
   .container
     .row
-      .col-md-3
-      .col-md-6
+      .col-md-1
+      .col-md-10
         form.form-inline(role='form' action='/offer/offerIt' method='post')
           .row
             .col-xs-2
-            .col-xs-8
+            .col-xs-4.offerForm
               .input-group.input-group-lg
-                h1= title
+                h2 Current Trunk
                 div &nbsp;
                 label Year
-                select.form-control.input-lg(id="year", name="year" value="2016")
-                    -for(var i = 1992;i<2016;i++){
-                    option(value="#{i}") #{i}
-                    -}
+                select.form-control.input-lg(id="year", name="year" value="none")
+                  option(value="" selected) select a year
+                  -for(var i = 1992;i<=2016;i++){
+                  option(value="#{i}") #{i}
+                  -}
                 div &nbsp;
                 label Model 
-                select.form-control.input-lg(name="model" id="model" value="STI")
+                select.form-control.input-lg(name="model" id="model" value="none")
+                  option(value="" selected) select a model
                   option(value="STI") STI
                   option(value="WRX") WRX
                 div &nbsp;
                 label Style 
-                select.form-control.input-lg(name="style" id="style" value="Wing")
+                select.form-control.input-lg(name="style" id="style" value="none")
+                  option(value="" selected) select a style
                   option(value="big_wing") Wing W/ Backup Cam
                   option(value="no_wing") No Wing
                   option(value="small_wing") Small Wing
                   option(value="lip") Lip w/ Backup Cam
+            .col-xs-4.offerForm
+              .input-group.input-group-lg
+                h2 Desired Trunk
                 div &nbsp;
-                button.btn.btn-lg.btn-info(type='submit') Post
+                label Year
+                select.form-control.input-lg(id="year", name="year" value="none")
+                  option(value="" selected) select a year
+                  -for(var i = 1992;i<=2016;i++){
+                  option(value="#{i}") #{i}
+                  -}
+                div &nbsp;
+                label Model 
+                select.form-control.input-lg(name="model" id="model" value="none")
+                  option(value="" selected) select model
+                  option(value="STI") STI
+                  option(value="WRX") WRX
+                div &nbsp;
+                label Style 
+                select.form-control.input-lg(name="style" id="style" value="none")
+                  option(value="" selected) select a style
+                  option(value="big_wing") Wing W/ Backup Cam
+                  option(value="no_wing") No Wing
+                  option(value="small_wing") Small Wing
+                  option(value="lip") Lip w/ Backup Cam
             .col-xs-2
-      .col-md-3
+          .row
+            .col-xs-12
+              div &nbsp;
+              button.btn.center-block(type='submit') Post
+      .col-md-1

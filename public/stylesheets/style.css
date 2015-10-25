@@ -28,6 +28,11 @@ label {
   color: white;
 }
 
+form h2 {
+  font-size: 42px;
+  color: white;
+}
+
 .googleLogin {
  width: 200px;
  height: 50px;
