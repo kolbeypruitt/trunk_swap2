@@ -38,7 +38,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   name: 'session',
   keys: [
-  'key'
+    process.env.SESSION_KEY1,
+    process.env.SESSION_KEY2,
+    process.env.SESSION_KEY3
   ]
 }));
 

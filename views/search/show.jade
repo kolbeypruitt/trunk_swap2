@@ -5,7 +5,10 @@ block content
     .row
       .col-md-2
       .col-md-8
-        h1= theTrunk.current_year + " " + theTrunk.current_model + " " + theTrunk.current_style + " "
-        h2 Contact information:
-        h2= user
+        h1 Contact information:
+        h2= user.displayName
+        h2= "has: " + theTrunk.current_year + " " + theTrunk.current_model + " " + theTrunk.current_style
+        h2= "wants: " + theTrunk.desired_year + " " + theTrunk.desired_model + " " + theTrunk.desired_style
+        h2=user.phone
+
       .col-md-2

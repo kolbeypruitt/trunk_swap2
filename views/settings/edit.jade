@@ -6,25 +6,25 @@ block content
       .col-md-3
       .col-md-6
         .jumbotron
-          .page-header
-            .row
-              .col-md-3
-                h2= title
-              .col-md-6
-
-              .col-md-3
-                a(href='/settings/edit') edit
-                div
-                a(href='/settings/close') close
-          img(class='profilePic' src=profilePic)
-          p First Name:
-            span   #{firstName}
-          div
-          p Last Name:
-            span   #{lastName}
-          div
-          p Email:
-            span   #{email}
-          p Phone:
-            span   #{phone}
-      .col-md-3
+          form.form-inline(role='form' action='/settings/edit' method='post')
+            .page-header
+              .row
+                .col-md-6
+                  h3= title
+                .col-md-4
+                .col-md-2
+                  a(href='/settings/edit') edit
+                  div
+                  a(href='/settings/close') close
+            img(class='profilePic' src=profilePic)
+            div
+            p First Name: 
+              input(type='text' name='firstName' value=firstName)
+            p Last Name: 
+              input(type='text' name='lastName' value=lastName)
+            p Email: 
+              input(type='email' name='email' value=email)
+            p Phone: 
+              input(type='tel' name='phone' value=phone)
+            button.btn.center-block(type='submit') Save
+      .col-md-6
