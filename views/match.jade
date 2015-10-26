@@ -6,7 +6,7 @@ block content
       .col-md-2
       .col-md-8
         - var n = 0
-          while n < allTrunks.length
+          while n < matches.length
             -n++
         h1 Search Results (#{n})
         table
@@ -17,11 +17,11 @@ block content
               th Style
               th ID
           tbody
-            for trunk in allTrunks
+            for match in matches
               tr
-                td= trunk.current_year
-                td= trunk.current_model
-                td= trunk.current_style
+                td= match.current_year
+                td= match.current_model
+                td= match.current_style
                 td
-                  a(href='/search/' + trunk._id)= trunk._id
+                  a(href='/search/' + match._id)= match._id
       .col-md-2
