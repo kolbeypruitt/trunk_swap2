@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var TrunkLib = require('../../lib/mongo')
+var dbLib = require('../../lib/mongo')
 var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/trunk_swap');
 var trunkdb = db.get('trunks');
 var usersdb = db.get('users');
@@ -26,10 +26,11 @@ router.get('/edit', function (req, res, next) {
 });
 
 router.post('/edit', function (req, res, next) {
-  return usersdb.update({_id: req.user._id }, { $set: {phone: req.body.phone}}).then(function () {
-    res.redirect('/settings')
-  })
-})
+  dbLib.editUserSettings(req.body, req.user).then(function () {
+    res.redirect('/settings');
+  });
+});
+
 router.get('/close', function (req, res, next) {
   res.redirect('/');
 });

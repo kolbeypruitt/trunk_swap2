@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var TrunkLib = require('../../lib/mongo')
+var dbLib = require('../../lib/mongo')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var trunkOffer = req.body;
   var user = req.session.passport.user;
-  TrunkLib.insertTrunkOffer(trunkOffer, user)
+  dbLib.insertTrunkOffer(trunkOffer, user)
     res.redirect('/offer/posted')
 });
 

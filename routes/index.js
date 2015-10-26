@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/trunk_swap');
 var trunkdb = db.get('trunks');
 var usersdb = db.get('users');
-var TrunkLib = require('../lib/mongo')
+var dbLib = require('../lib/mongo')
 
 
 /* GET home page. */

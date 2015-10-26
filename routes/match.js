@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/trunk_swap');
 var trunkdb = db.get('trunks');
 var usersdb = db.get('users');
-var TrunkLib = require('../lib/mongo')
+var dbLib = require('../lib/mongo')
 
 
 /* GET home page. */
@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
     }).then(function (myTrunk) {
       // this should find the my users trunk offer
       // next we need to run the searchForTrunk method in lib folder
-        TrunkLib.findTrunkMatch(myTrunk).then(function (matches) {
+        dbLib.findTrunkMatch(myTrunk).then(function (matches) {
         console.log(matches);
         res.render('match', {title: 'Trunk Man', displayName: req.user.displayName, matches: matches })
       })

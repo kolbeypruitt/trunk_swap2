@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var TrunkLib = require('../../lib/mongo')
+var dbLib = require('../../lib/mongo')
 var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/trunk_swap');
 var trunkdb = db.get('trunks');
 var usersdb = db.get('users');
@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  TrunkLib.searchForTrunk(req.body)
+  dbLib.searchForTrunk(req.body)
   .then(function (docs) {
     res.render('search/results', { title: 'Post Offer', displayName:req.user.displayName, allTrunks: docs });
   })
