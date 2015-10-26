@@ -31,5 +31,10 @@ router.post('/', function(req, res, next) {
   })
 });
 
+router.get('/:id', function(req, res, next) {
+  trunkdb.findOne({_id: req.params.id}, function (err, record) {
+    res.render('search/show', {theTrunk: record});
+  });
+});
 
 module.exports = router;
