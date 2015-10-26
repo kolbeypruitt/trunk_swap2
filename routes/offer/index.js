@@ -7,10 +7,10 @@ router.get('/', function(req, res, next) {
     res.render('offer/index', { title: 'Post Offer', displayName: req.user.displayName })
 });
 
-router.post('/offerIt', function(req, res, next) {
-  var body = req.body;
+router.post('/', function(req, res, next) {
+  var trunkOffer = req.body;
   var user = req.session.passport.user;
-  TrunkLib.insertTrunkOffer(body, user)
+  TrunkLib.insertTrunkOffer(trunkOffer, user)
     res.redirect('/offer/posted')
 });
 

@@ -1,4 +1,40 @@
 extends ../layout
 
 block content
-  h1 Search Page
+  .container
+    .row
+      .col-md-1
+      .col-md-10
+        form.form-inline(role='form' action='/search' method='post')
+          .row
+            .col-xs-4 
+            .col-xs-4.offerForm
+              .input-group.input-group-lg
+                h2 Desired Trunk
+                div &nbsp;
+                label Year
+                select.form-control.input-lg(class='sel' name="findYear" id="year" value="none")
+                  option(value='null' selected) select a year
+                  -for(var i = 1992;i<=2016;i++){
+                  option(value="#{i}") #{i}
+                  -}
+                div &nbsp;
+                label Model 
+                select.form-control.input-lg(class='sel' name="findModel" id="model" value="none")
+                  option(value='null' selected) select model
+                  option(value="STI") STI
+                  option(value="WRX") WRX
+                div &nbsp;
+                label Style 
+                select.form-control.input-lg(class='sel' name="findStyle" id="style" value="none")
+                  option(value='null' selected) select a style
+                  option(value="big_wing") Wing W/ Backup Cam
+                  option(value="no_wing") No Wing
+                  option(value="small_wing") Small Wing
+                  option(value="lip") Lip w/ Backup Cam
+            .col-xs-4
+          .row
+            .col-xs-12
+              div &nbsp;
+              button.btn.center-block(type='submit') Search
+      .col-md-1
