@@ -28,6 +28,16 @@ label {
   color: white;
 }
 
+th {
+  font-size: 20px;
+  color: white;
+}
+
+td {
+  font-size: 18px;
+  color: white;
+}
+
 form h2 {
   font-size: 42px;
   color: white;

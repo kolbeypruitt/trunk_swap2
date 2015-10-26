@@ -1,21 +1,24 @@
-.container
-  h1 Search Results are...
-  .row
-    .col-md-1
-    .col-md-10
-      table
-        thead
-          tr
-            th ID
-            th Year
-            th Model
-            th Style
-        tbody
-          for trunk in allTrunks
+extends ../layout
+
+block content
+  .container
+    .row
+      .col-md-3
+      .col-md-6
+        h1 Search Results are...
+        table
+          thead
             tr
-              td= trunk._id
-              td= trunk.current_year
-              td= trunk.current_model
-              td= trunk.current_style
-                a(href='/trunks/' + trunk._id)= trunk.name
-    .col-md-1
+              th ID
+              th Year
+              th Model
+              th Style
+          tbody
+            for trunk in allTrunks
+              tr
+                td
+                  a(href='/trunks/' + trunk._id)= trunk._id
+                td= trunk.current_year
+                td= trunk.current_model
+                td= trunk.current_style
+      .col-md-3
