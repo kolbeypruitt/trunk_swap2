@@ -1,4 +1,4 @@
-extends ../layout
+extends layout
 
 block content
   .container
@@ -9,20 +9,22 @@ block content
           while n < allTrunks.length
             -n++
 
-        h1 Search Results (#{n})
-        table
-          thead
-            tr
-              th Year
-              th Model
-              th Style
-              th ID
-          tbody
-            for trunk in allTrunks
-              tr
-                td= trunk.current_year
-                td= trunk.current_model
-                td= trunk.current_style
-                td
-                  a(href='/search/' + trunk._id)= trunk._id
+        h1 Browse Results (#{n})
+        for trunk in allTrunks
+          .jumbotron.results
+            table
+              tbody
+                tr
+                  td(width="25%") Year:
+                  td= trunk.current_year
+                tr
+                  td Model:
+                  td= trunk.current_model
+                tr
+                  td Style:
+                  td= trunk.current_style
+                tr
+                  td id:
+                  td
+                    a(href='/search/' + trunk._id)= trunk._id
       .col-md-2

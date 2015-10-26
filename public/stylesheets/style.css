@@ -149,3 +149,19 @@ a.navbar-brand {
   outline-offset: -2px;
   cursor: pointer;
 }
+
+.jumbotron.results {
+  border: 4px solid #2285db;
+  opacity: 0.80;
+  filter: alpha(opacity=80);
+  padding: 5px;
+  color: #12ea99;
+  font-size: 12px;
+  background: transparent;
+  background: #12ea99;
+}
+
+.jumbotron.results td {
+  column-width: 50px;
+  color: black;
+}

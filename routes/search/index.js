@@ -18,9 +18,10 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-  trunkdb.findOne({_id: req.params.id}, function (err, record) {
-    res.render('search/show', {theTrunk: record});
-  });
+  dbLib.searchShowOffer(req.params).then(function (record) {
+    console.log(record);
+    res.render('search/show', {theTrunk: record, displayName:req.user.displayName});
+  })
 });
 
 module.exports = router;
