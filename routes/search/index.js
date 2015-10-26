@@ -11,22 +11,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  console.log(req.body);
-  var obj = {}
-  if(req.body.findYear!='null') {
-      obj['current_year'] = req.body.findYear;
-  }
-  if(req.body.findModel!='null') {
-      obj['current_model'] = req.body.findModel;
-  }
-  if(req.body.findStyle!='null') {
-      obj['current_style'] = req.body.findStyle;
-  }
-  trunkdb.find(obj, function(err, docs){
-      if (err) return err;
-      // console.log(docs);
-      // res.send(docs);
-  }).then(function (docs) {
+  TrunkLib.searchForTrunk(req.body)
+  .then(function (docs) {
     res.render('search/results', { title: 'Post Offer', displayName:req.user.displayName, allTrunks: docs });
   })
 });
