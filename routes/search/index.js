@@ -11,16 +11,16 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  dbLib.searchForTrunk(req.body)
-  .then(function (docs) {
+  dbLib.searchForTrunk(req.body).then(function (docs) {
     res.render('search/results', { title: 'Post Offer', displayName:req.user.displayName, allTrunks: docs });
   })
 });
 
 router.get('/:id', function(req, res, next) {
-  dbLib.searchShowOffer(req.params).then(function (record) {
-    console.log(record);
-    res.render('search/show', {theTrunk: record, displayName:req.user.displayName});
+  dbLib.searchShowOffer(req.params.id).then(function (userAndtrunk) {
+    var user = userAndtrunk[0];
+    var trunk = userAndtrunk[1];
+    res.render('search/show', {theTrunk: trunk, user: user, displayName: req.user.displayName });
   })
 });
 
