@@ -6,9 +6,9 @@ block content
       .col-md-2
       .col-md-8
         - var n = 0
-          while n < matches.length
+          while n < allMatches.length
             -n++
-        h1 Search Results (#{n})
+        h1 All Matches (#{n})
         table
           thead
             tr
@@ -17,7 +17,7 @@ block content
               th Style
               th ID
           tbody
-            for match in matches
+            for match in allMatches
               tr
                 td= match.current_year
                 td= match.current_model
