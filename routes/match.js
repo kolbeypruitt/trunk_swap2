@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
       array.push({ 'current_model': myOffer.desired_model })
       array.push({ 'current_style': myOffer.desired_style })
       return trunkdb.find( { $and: [ array[0], array[1], array[2] ] }, function (err, allMatches) {
-        res.render('match', {title: 'Trunk Man', allMatches: allMatches})
+        res.render('match', {title: 'Trunk Man', allMatches: allMatches, displayName: req.user.displayName})
       })
     })
 
