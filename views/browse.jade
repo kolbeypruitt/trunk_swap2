@@ -5,9 +5,9 @@ block content
     .row
       .col-md-2
       .col-md-8
-        - var n = 0
-          while n < allTrunks.length
-            - n++
+        -n=0
+        each val, index in allTrunks
+          -n++
         h1 Browse All Trunks (#{n})
         for trunk in allTrunks
           a(href='/search/' + trunk._id)
