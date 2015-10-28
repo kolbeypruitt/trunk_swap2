@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  .container
+    .row
+      .col-md-2
+      .col-md-8
+        -n=0
+        each val, index in allUsers
+          -n++
+        h1 Browse All Trunks (#{n})
+        for trunk in allUsers
+          a(href='/search/' + trunk._id)
+            .jumbotron.results
+              .row
+                .col-md-5
+                  table
+                    tbody
+                      tr
+                        td(width="45%") Year:
+                        td= trunk.current_year
+                      tr
+                        td Model:
+                        td= trunk.current_model
+                      tr
+                        td Style:
+                        td= trunk.current_style
+                      tr
+                        td Name:
+                        td= trunk.firstName + ' ' + trunk.lastName
+                .col-md-7
+                  table
+                    tbody
+                      tr
+                        td(width="30%") Phone:
+                        td= trunk.phone
+                      tr
+                        td Email:
+                        td= trunk.email
+                      tr
+                        td Location:
+                        td= trunk.location
+                      tr
+                        td Post Id:
+                        td= trunk._id
+      .col-md-2

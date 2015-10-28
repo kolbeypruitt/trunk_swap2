@@ -20,6 +20,7 @@ var settings = require('./routes/settings');
 var search = require('./routes/search');
 var match = require('./routes/match');
 var browse = require('./routes/browse');
+var usersThenTrunks = require('./routes/usersThenTrunks');
 
 var app = express();
 
@@ -104,6 +105,7 @@ app.use('/settings', settings);
 app.use('/search', search);
 app.use('/match', match);
 app.use('/browse', browse);
+app.use('/usersThenTrunks', usersThenTrunks);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
