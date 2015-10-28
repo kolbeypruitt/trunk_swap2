@@ -7,27 +7,40 @@ block content
       .col-md-8
         - var n = 0
           while n < allTrunks.length
-            -n++
-
+            - n++
         h1 Browse All Trunks (#{n})
         for trunk in allTrunks
-          .jumbotron.results
-            table
-              tbody
-                tr
-                  td(width="25%") Year:
-                  td= trunk.current_year
-                tr
-                  td Model:
-                  td= trunk.current_model
-                tr
-                  td Style:
-                  td= trunk.current_style
-                tr
-                  td id:
-                  td
-                    a(href='/search/' + trunk._id)= trunk._id
-                tr
-                  td UserId:
-                  td= trunk.user_id
+          a(href='/search/' + trunk._id)
+            .jumbotron.results
+              .row
+                .col-md-5
+                  table
+                    tbody
+                      tr
+                        td(width="45%") Year:
+                        td= trunk.current_year
+                      tr
+                        td Model:
+                        td= trunk.current_model
+                      tr
+                        td Style:
+                        td= trunk.current_style
+                      tr
+                        td Name:
+                        td= trunk.firstName + ' ' + trunk.lastName
+                .col-md-7
+                  table
+                    tbody
+                      tr
+                        td(width="30%") Phone:
+                        td= trunk.phone
+                      tr
+                        td Email:
+                        td= trunk.email
+                      tr
+                        td Location:
+                        td= trunk.location
+                      tr
+                        td Post Id:
+                        td= trunk._id
       .col-md-2

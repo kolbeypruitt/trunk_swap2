@@ -20,10 +20,24 @@ router.get('/', function (req, res, next) {
       // assessment requirements
       var allTrunks = records.allTrunks;
       var allUsers = records.allUsers;
+      var viewObj = {};
       for (var i = 0; i < allTrunks.length; i++) {
-        allTrunks[i].user_id
+        var trunk = allTrunks[i];
+        // finding correct trunk for user
+        var user = dbLib.findUserOfTrunk(trunk, allUsers)
+        viewObj['trunk' + '_' + i] = { _id: trunk._id
+                                      ,current_year: trunk.current_year
+                                      ,current_model: trunk.current_model
+                                      ,current_style: trunk.current_style
+                                      ,firstName: user.firstName
+                                      ,lastName: user.lastName
+                                      ,email: user.email
+                                      ,phone: user.phone
+                                      ,location: 'locations pending'
+                                    };
       }
-      res.render('browse', {allTrunks: allTrunks, allUsers: allUsers, displayName: req.user.displayName})
+      console.log(viewObj);
+      res.render('browse', {allTrunks: viewObj, displayName: req.user.displayName})
     });
   });
 });
