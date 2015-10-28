@@ -13,20 +13,20 @@ block content
                 h2 Current Trunk
                 div &nbsp;
                 label Year
-                select.form-control.input-lg(class='sel' name="cur_year" id="year" value="none")
+                select.form-control.input-lg(class='sel' name="cur_year" id="year" value="none" required)
                   option(value="" selected) select a year
                   -for(var i = 1992;i<=2016;i++){
                   option(value="#{i}") #{i}
                   -}
                 div &nbsp;
                 label Model 
-                select.form-control.input-lg(class='sel' name="cur_model" id="model" value="none")
+                select.form-control.input-lg(class='sel' name="cur_model" id="model" value="none" required)
                   option(value="" selected) select a model
                   option(value="STI") STI
                   option(value="WRX") WRX
                 div &nbsp;
                 label Style 
-                select.form-control.input-lg(class='sel' name="cur_style" id="style" value="none")
+                select.form-control.input-lg(class='sel' name="cur_style" id="style" value="none" required)
                   option(value="" selected) select a style
                   option(value="big_wing") Wing W/ Backup Cam
                   option(value="no_wing") No Wing
@@ -37,20 +37,20 @@ block content
                 h2 Desired Trunk
                 div &nbsp;
                 label Year
-                select.form-control.input-lg(class='sel' name="des_year" id="year" value="none")
+                select.form-control.input-lg(class='sel' name="des_year" id="year" value="none" required)
                   option(value="" selected) select a year
                   -for(var i = 1992;i<=2016;i++){
                   option(value="#{i}") #{i}
                   -}
                 div &nbsp;
                 label Model 
-                select.form-control.input-lg(class='sel' name="des_model" id="model" value="none")
+                select.form-control.input-lg(class='sel' name="des_model" id="model" value="none" required)
                   option(value="" selected) select model
                   option(value="STI") STI
                   option(value="WRX") WRX
                 div &nbsp;
                 label Style 
-                select.form-control.input-lg(class='sel' name="des_style" id="style" value="none")
+                select.form-control.input-lg(class='sel' name="des_style" id="style" value="none" required)
                   option(value="" selected) select a style
                   option(value="big_wing") Wing W/ Backup Cam
                   option(value="no_wing") No Wing
