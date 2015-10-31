@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "body-parser": "~1.13.2",
+    "compound-passport": "0.0.9",
     "cookie-parser": "~1.3.5",
     "cookie-session": "^1.2.0",
     "debug": "~2.2.0",
@@ -16,6 +17,8 @@
     "monk": "^1.0.1",
     "morgan": "~1.6.1",
     "passport": "^0.3.0",
+    "passport-facebook": "^2.0.0",
+    "passport-facebook-token": "^3.0.5",
     "passport-google-oauth": "^0.2.0",
     "request": "^2.65.0",
     "serve-favicon": "~2.3.0",

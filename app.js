@@ -6,7 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport')
 var session = require('cookie-session')
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var GoogleStrategy = require('passport-google-oauth').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+
 var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/trunk_swap');
 var trunkdb = db.get('trunk');
 var usersdb = db.get('users');
@@ -52,7 +54,7 @@ app.use(passport.session());
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.HOST + "oauth2callback"
+    callbackURL: process.env.HOST + "auth/google/callback"
   },function(accessToken, refreshToken, profile, done) {
     // console.log(profile);
     // this must be findOne because find doesn't return the data
@@ -73,13 +75,54 @@ passport.use(new GoogleStrategy({
   }
 ));
 
+// passport.use(new FacebookStrategy({
+//     clientID: process.env.FACEBOOK_CLIENT_ID,
+//     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+//     callbackURL: process.env.HOST + "auth/facebook/callback",
+//     profileFields: ['id', 'displayName', 'photos'],
+//     enableProof: false
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//     // asynchronous verification, for effect...
+//     process.nextTick(function () {
+      
+//       // To keep the example simple, the user's Facebook profile is returned to
+//       // represent the logged-in user.  In a typical application, you would want
+//       // to associate the Facebook account with a user record in your database,
+//       // and return that user instead.
+//       return done(null, profile);
+//     });
+//   }
+// ));
+//   function(accessToken, refreshToken, profile, done) {
+//     return usersdb.findOne({ 'email': profile.emails[0].value }, function (err, user) {
+//       if (!user) {
+//         return usersdb.insert({ 'email': profile.emails[0].value
+//                           , 'displayName': profile.displayName
+//                           , 'firstName': profile.name.givenName
+//                           , 'lastName': profile.name.familyName
+//                           , 'profilePic': profile.photos[0].value
+//         }, function (err, user) {
+//           return done(err, user)
+//         })
+//       } else {
+//         return done(err, user)
+//       }
+//     })
+//   }
+// ));
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'] }))
 
-app.get('/oauth2callback', 
-  passport.authenticate('google', { successRedirect:'/loggedin', failureRedirect: '/failed' }))
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { successRedirect:'/loggedin', failureRedirect: '/failed' }));
 
+app.get('/auth/facebook',
+  passport.authenticate('facebook', { scope : 'email' }));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect:'/loggedin', failureRedirect: '/failed' }));
 
 app.get('/logout', function(req, res){
   req.session = null;
@@ -98,6 +141,7 @@ app.use(function (req, res, next) {
   res.locals.user = req.user
   next()
 })
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/offer', offer);
