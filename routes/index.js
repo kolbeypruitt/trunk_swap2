@@ -20,8 +20,7 @@ router.get('/failed', function(req, res, next) {
 });
 
 router.get('/loggedin', function (req, res, next) {
-  // console.log(req.user);
-    res.render('index', {title: 'Trunk Man', displayName: req.user.displayName})
+  res.render('index', {title: 'Trunk Man', displayName: req.user.displayName})
 })
 
 module.exports = router;

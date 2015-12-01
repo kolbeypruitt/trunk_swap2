@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport')
 var session = require('cookie-session')
-var GoogleStrategy = require('passport-google-oauth').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var FacebookStrategy = require('passport-facebook-token').Strategy;
 
 var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/trunk_swap');
 var trunkdb = db.get('trunk');
@@ -22,7 +22,6 @@ var settings = require('./routes/settings');
 var search = require('./routes/search');
 var match = require('./routes/match');
 var browse = require('./routes/browse');
-var usersThenTrunks = require('./routes/usersThenTrunks');
 
 var app = express();
 
@@ -76,24 +75,12 @@ passport.use(new GoogleStrategy({
 ));
 
 // passport.use(new FacebookStrategy({
-//     clientID: process.env.FACEBOOK_CLIENT_ID,
-//     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+//     consumerKey: process.env.FACEBOOK_CLIENT_ID,
+//     consumerSecret: process.env.FACEBOOK_CLIENT_SECRET,
 //     callbackURL: process.env.HOST + "auth/facebook/callback",
 //     profileFields: ['id', 'displayName', 'photos'],
 //     enableProof: false
 //   },
-//   function(accessToken, refreshToken, profile, done) {
-//     // asynchronous verification, for effect...
-//     process.nextTick(function () {
-      
-//       // To keep the example simple, the user's Facebook profile is returned to
-//       // represent the logged-in user.  In a typical application, you would want
-//       // to associate the Facebook account with a user record in your database,
-//       // and return that user instead.
-//       return done(null, profile);
-//     });
-//   }
-// ));
 //   function(accessToken, refreshToken, profile, done) {
 //     return usersdb.findOne({ 'email': profile.emails[0].value }, function (err, user) {
 //       if (!user) {
@@ -149,7 +136,6 @@ app.use('/settings', settings);
 app.use('/search', search);
 app.use('/match', match);
 app.use('/browse', browse);
-app.use('/usersThenTrunks', usersThenTrunks);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

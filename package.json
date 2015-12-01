@@ -22,6 +22,7 @@
     "passport-google-oauth": "^0.2.0",
     "request": "^2.65.0",
     "serve-favicon": "~2.3.0",
-    "unirest": "^0.4.2"
+    "unirest": "^0.4.2",
+    "yaml": "^0.2.3"
   }
 }
