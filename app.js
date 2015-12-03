@@ -74,31 +74,6 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-// passport.use(new FacebookStrategy({
-//     consumerKey: process.env.FACEBOOK_CLIENT_ID,
-//     consumerSecret: process.env.FACEBOOK_CLIENT_SECRET,
-//     callbackURL: process.env.HOST + "auth/facebook/callback",
-//     profileFields: ['id', 'displayName', 'photos'],
-//     enableProof: false
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     return usersdb.findOne({ 'email': profile.emails[0].value }, function (err, user) {
-//       if (!user) {
-//         return usersdb.insert({ 'email': profile.emails[0].value
-//                           , 'displayName': profile.displayName
-//                           , 'firstName': profile.name.givenName
-//                           , 'lastName': profile.name.familyName
-//                           , 'profilePic': profile.photos[0].value
-//         }, function (err, user) {
-//           return done(err, user)
-//         })
-//       } else {
-//         return done(err, user)
-//       }
-//     })
-//   }
-// ));
-
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'] }))
 

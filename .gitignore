@@ -1,5 +1,6 @@
 # System variables
 .env
+
 # Logs
 logs
 *.log
