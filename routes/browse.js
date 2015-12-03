@@ -9,15 +9,6 @@ router.get('/', function (req, res, next) {
   dbLib.modelDisplayObjTrunksAndUsers().then(function (viewObj) {
     res.render('browse', {allTrunks: viewObj, displayName: req.user.displayName})
   })
-
-// 
-// 
-// 
-// 
-// 
-// 
-
-  
 });
 
 module.exports = router;
